@@ -4,6 +4,7 @@ package org.egov.bootcamp.model;
 public class Entity {
     private Integer id;
     private String name;
+    private String capName;
 
     public Entity(Integer id, String name) {
         this.id = id;
@@ -11,15 +12,24 @@ public class Entity {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Entity{" +
                 "id=" + id +
-                ", name=" + name +
+                ", name='" + name + '\'' +
+                ", capName='" + capName + '\'' +
                 '}';
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public String getCapName() {
+        return capName;
+    }
+
+    public void setCapName(String capName) {
+        this.capName = capName;
     }
 
     public void setId(Integer id) {
