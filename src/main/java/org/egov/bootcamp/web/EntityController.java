@@ -4,22 +4,30 @@ import org.egov.bootcamp.model.Entity;
 import org.egov.bootcamp.service.EntityService;
 import org.egov.bootcamp.service.LogicService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntityController {
-    private EntityService entityService = new EntityService();
+    private EntityService entityService;
 
     private LogicService logicService;
 
-    public EntityController(LogicService logicService) {
-        this.logicService = logicService;
+    public EntityController() {
+        this.entityService = new EntityService();
+        this.logicService = new LogicService();
     }
 
-    public Entity get(Integer entityId) {
-        Entity entity = this.entityService.get(entityId);
-        return this.logicService.applyLogic(entity);
+    public List<Entity> get(List<Integer> entityIds) {
+        List<Entity> entities = new ArrayList<Entity>();
+        for (Integer entityId : entityIds) {
+            Entity entity = this.entityService.get(entityId);
+            entities.add(this.logicService.applyLogic(entity));
+        }
+        return entities;
     }
 
     public static void main(String[] args) {
-        EntityController entityController = new EntityController(new LogicService());
-        System.out.println(entityController.get(2));
+        EntityController entityController = new EntityController();
+
     }
 }

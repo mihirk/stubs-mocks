@@ -4,12 +4,13 @@ import org.egov.bootcamp.dao.EntityDao;
 import org.egov.bootcamp.model.Entity;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.times;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -17,20 +18,22 @@ public class EntityServiceTest {
     @Mock
     private EntityDao entityDao;
 
+    @InjectMocks
+    private EntityService entityService;
+
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        when(entityDao.get(5)).thenReturn(new Entity(5, "Yo"));
     }
 
     @Test
-    public void shouldReturnTheExistingEntity() throws Exception {
-        EntityService entityService = new EntityService(entityDao);
-        Entity entity = entityService.get(5);
+    public void happyPath() throws Exception {
+        when(entityDao.get(any(Integer.class))).thenReturn(new Entity(1, "Name"));
+        Entity entity = entityService.get(1);
         assertNotNull(entity);
-        assertEquals(Integer.valueOf(5), entity.getId());
-        assertEquals("Entity Yo", entity.getName());
-        assertEquals("YO", entity.getCapName());
-        Mockito.verify(entityDao, times(1)).get(5);
+        assertEquals(Integer.valueOf(1), entity.getId());
+        assertEquals("Entity Name", entity.getName());
+        assertEquals("NAME", entity.getCapName());
+        verify(entityDao).get(2);
     }
 }
