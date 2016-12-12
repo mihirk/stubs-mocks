@@ -5,6 +5,7 @@ import org.egov.bootcamp.service.EntityService;
 import org.egov.bootcamp.service.LogicService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EntityController {
@@ -35,6 +36,7 @@ public class EntityController {
 
     public static void main(String[] args) {
         EntityController entityController = new EntityController();
-
+        List<Entity> entities = entityController.get(Arrays.asList(1, 2, 3));
+        System.out.println(entities);
     }
 }
