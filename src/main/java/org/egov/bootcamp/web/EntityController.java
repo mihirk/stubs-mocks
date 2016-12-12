@@ -20,7 +20,14 @@ public class EntityController {
     public List<Entity> get(List<Integer> entityIds) {
         List<Entity> entities = new ArrayList<Entity>();
         for (Integer entityId : entityIds) {
-            Entity entity = this.entityService.get(entityId);
+            Entity entity = new Entity(-1, "Invalid Entity");
+            if (entityId < 10) {
+                entity = this.entityService.getLow(entityId);
+            } else if (entityId >= 10 && entityId < 20) {
+                entity = this.entityService.getMedium(entityId);
+            } else if (entityId >= 20 && entityId < 30) {
+                entity = this.entityService.getMedium(entityId);
+            }
             entities.add(this.logicService.applyLogic(entity));
         }
         return entities;

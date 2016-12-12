@@ -11,7 +11,15 @@ public class EntityService {
         this.entityDao = new EntityDao();
     }
 
-    public Entity get(Integer entityId) {
+    public Entity getLow(Integer entityId) {
+        return applyInternalLogic(validate(entityDao.get(entityId + 1)));
+    }
+
+    public Entity getMedium(Integer entityId) {
+        return applyInternalLogic(validate(entityDao.get(entityId + 1)));
+    }
+
+    public Entity getHigh(Integer entityId) {
         return applyInternalLogic(validate(entityDao.get(entityId + 1)));
     }
 
