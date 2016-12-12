@@ -24,10 +24,19 @@ public class EntityService {
     }
 
     private Entity validate(Entity entity) {
-        if (entity != null && entity.getId() > 0 && entity.getName() != null && entity.getName().trim().length() > 0) {
-            return entity;
+        if (entity == null) {
+            throw new NullPointerException("Entity is null");
         }
-        throw new NullPointerException("Entity is null");
+        if (entity.getId() < 1) {
+            throw new NullPointerException("Invalid Id");
+        }
+        if (entity.getName() == null) {
+            throw new NullPointerException("Name is null");
+        }
+        if (entity.getName().trim().length() <= 0) {
+            throw new NullPointerException("Name is mempty");
+        }
+        return entity;
     }
 
     private Entity applyInternalLogic(Entity entity) {

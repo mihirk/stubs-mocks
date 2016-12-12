@@ -27,7 +27,7 @@ public class EntityController {
             } else if (entityId >= 10 && entityId < 20) {
                 entity = this.entityService.getMedium(entityId);
             } else if (entityId >= 20 && entityId < 30) {
-                entity = this.entityService.getMedium(entityId);
+                entity = this.entityService.getHigh(entityId);
             }
             entities.add(this.logicService.applyLogic(entity));
         }
