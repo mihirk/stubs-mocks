@@ -1,5 +1,9 @@
 package org.egov.bootcamp.web;
 
+import org.egov.bootcamp.model.EntityDTO;
+
+import java.util.List;
+
 import org.egov.bootcamp.mapper.EntityMapper;
 import org.egov.bootcamp.model.Entity;
 import org.egov.bootcamp.model.EntityDTO;
