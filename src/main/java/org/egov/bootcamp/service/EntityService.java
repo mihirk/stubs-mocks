@@ -1,7 +1,9 @@
 package org.egov.bootcamp.service;
 
 import org.egov.bootcamp.dao.EntityDao;
+import org.egov.bootcamp.mapper.EntityMapper;
 import org.egov.bootcamp.model.Entity;
+import org.egov.bootcamp.model.EntityDTO;
 
 public class EntityService {
 
@@ -11,15 +13,15 @@ public class EntityService {
         this.entityDao = new EntityDao();
     }
 
-    public Entity getLow(Integer entityId) {
+    public EntityDTO getLow(Integer entityId) {
         return applyInternalLogic(validate(entityDao.get(entityId + 1)));
     }
 
-    public Entity getMedium(Integer entityId) {
+    public EntityDTO getMedium(Integer entityId) {
         return applyInternalLogic(validate(entityDao.get(entityId + 1)));
     }
 
-    public Entity getHigh(Integer entityId) {
+    public EntityDTO getHigh(Integer entityId) {
         return applyInternalLogic(validate(entityDao.get(entityId + 1)));
     }
 
@@ -39,12 +41,12 @@ public class EntityService {
         return entity;
     }
 
-    private Entity applyInternalLogic(Entity entity) {
+    private EntityDTO applyInternalLogic(Entity entity) {
         entity.setCapName(entity.getName().toUpperCase());
         if (!entity.getName().startsWith("Entity")) {
             entity.setName("Entity " + entity.getName());
         }
-        return entity;
+        return EntityMapper.map(entity);
     }
     /*
     1. Happy Path

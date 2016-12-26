@@ -1,6 +1,6 @@
 package org.egov.bootcamp.web;
 
-import org.egov.bootcamp.model.Entity;
+import org.egov.bootcamp.model.EntityDTO;
 import org.egov.bootcamp.service.EntityService;
 import org.egov.bootcamp.service.LogicService;
 
@@ -18,25 +18,25 @@ public class EntityController {
         this.logicService = new LogicService();
     }
 
-    public List<Entity> get(List<Integer> entityIds) {
-        List<Entity> entities = new ArrayList<Entity>();
+    public List<EntityDTO> get(List<Integer> entityIds) {
+        List<EntityDTO> entities = new ArrayList<EntityDTO>();
         for (Integer entityId : entityIds) {
-            Entity entity = new Entity(-1, "Invalid Entity");
+            EntityDTO entityDTO = new EntityDTO(-1, "Invalid Entity");
             if (entityId < 10) {
-                entity = this.entityService.getLow(entityId);
+                entityDTO = this.entityService.getLow(entityId);
             } else if (entityId >= 10 && entityId < 20) {
-                entity = this.entityService.getMedium(entityId);
+                entityDTO = this.entityService.getMedium(entityId);
             } else if (entityId >= 20 && entityId < 30) {
-                entity = this.entityService.getHigh(entityId);
+                entityDTO = this.entityService.getHigh(entityId);
             }
-            entities.add(this.logicService.applyLogic(entity));
+            entities.add(this.logicService.applyLogic(entityDTO));
         }
         return entities;
     }
 
     public static void main(String[] args) {
         EntityController entityController = new EntityController();
-        List<Entity> entities = entityController.get(Arrays.asList(1, 2, 3));
+        List<EntityDTO> entities = entityController.get(Arrays.asList(1, 2, 3));
         System.out.println(entities);
     }
 }
