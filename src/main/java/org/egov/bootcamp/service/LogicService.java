@@ -1,9 +1,9 @@
 package org.egov.bootcamp.service;
 
-import org.egov.bootcamp.model.Entity;
+import org.egov.bootcamp.model.EntityDTO;
 
 public class LogicService {
-    public Entity applyLogic(Entity entity) {
+    public EntityDTO applyLogic(EntityDTO entity) {
         entity.setName(entity.getName() + " Hello World");
         return entity;
     }
